@@ -11,22 +11,26 @@
     var user;
     var startButton;
     var playing = false;
-    
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
+    var backGround;
+    var wall;
+    var game = new Phaser.Game(1200, 900, Phaser.AUTO, null, {
       preload: preload, create: create, update: update
     });
     function preload() {
-        game.load.image('background', '');
-        game.load.image('wall');
+        game.load.image('background', 'img/background.jpeg', 1200, 900);
+        game.load.image('wall', 'img/brickwalltexture1.jpg', 920, 680);
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         game.stage.backgroundColor = '#eee';
-        game.load.image('ball', 'img/ball.png');
+        game.load.image('user', 'img/climbingpedro.png', 200, 120);
+        game.load.spritesheet('startButton', 'img/Start-Button.png', 140, 70);
     }
     function create() {
-        user = game.add.sprite(50, 50, 'ball');
-        startButton = game.add.button(game.world.width*0.25, game.world.height*0.25, 'button', startGame, this, 1, 0, 2);
+        user = game.add.sprite(100, 50, 'user');
+        backGround = game.add.sprite('background';
+        wall = game.add.sprite('wall');                             
+        startButton = game.add.button(game.world.width*0.25, game.world.height*0.25, 'startButton', startGame, this, 1, 0, 2);
         startButton.anchor.set(0.5);
     }
     function update() {
