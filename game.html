@@ -17,7 +17,7 @@
       preload: preload, create: create, update: update
     });
     function preload() {
-        game.load.image('background', 'img/background.jpeg');
+        game.load.image('backGround', 'img/background.jpeg');
         game.load.image('wall', 'img/brickwalltexture1.jpg', game.world.width*0.5, game.world.height*0.5);
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
@@ -27,9 +27,9 @@
     }
     function create() {
         game.physics.startSystem(Phaser.Physics.ARCADE);
-        backGround = game.add.sprite('background';
+        backGround = game.add.sprite('backGround';
         wall = game.add.sprite('wall');
-        user = game.add.sprite(100, 50, 'user');
+        user = game.add.sprite(game.world.width*0.5, game.world.height*0.5, 'user');
         startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'startButton', startGame, this, 1, 0, 2);
         startButton.anchor.set(0.5);
     }
