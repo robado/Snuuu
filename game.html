@@ -1,1 +1,45 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Phaser Workshop - lesson 01: Initialize the framework</title>
+    <style>* { padding: 0; margin: 0; }</style>
+    <script src="js/phaser.min.js"></script>
+</head>
+<body>
+<script>
+    var user;
+    var startButton;
+    var playing = false;
+    
+    var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
+      preload: preload, create: create, update: update
+    });
+    function preload() {
+        game.load.image('background', '');
+        game.load.image('wall');
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.pageAlignHorizontally = true;
+        game.scale.pageAlignVertically = true;
+        game.stage.backgroundColor = '#eee';
+        game.load.image('ball', 'img/ball.png');
+    }
+    function create() {
+        user = game.add.sprite(50, 50, 'ball');
+        startButton = game.add.button(game.world.width*0.25, game.world.height*0.25, 'button', startGame, this, 1, 0, 2);
+        startButton.anchor.set(0.5);
+    }
+    function update() {
+        if (playing) {
+          user.y -= 1;
+          game.camera.y -=1
+          
+        }
+    }
+    function startGame() {
+        startButton.destroy();
+        playing = true;
+    }
+</script>
+</body>
+</html>
