@@ -16,15 +16,15 @@
     });
     function preload() {
         game.load.image('backGround', 'img/background.jpeg');
-        game.load.image('wall', 'img/brickwalltexture1.jpg', game.world.width*0.5, game.world.height*0.5);
+        game.load.image('wall', 'img/brickwalltexture1.jpg');
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         game.load.image('user', 'img/climbingpedro.png');
     }
     function create() {
-        backGround = game.add.sprite('backGround';
-        wall = game.add.sprite('wall');
+        backGround = game.add.image(game.world.width*0.5, game.world.height*0.5, 'backGround';
+        wall = game.add.image('wall');
         user = game.add.sprite(game.world.width*0.5, game.world.height*0.5, 'user');
     }
     function update() {
