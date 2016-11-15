@@ -27,9 +27,9 @@
         game.load.spritesheet('startButton', 'img/Start-Button.png', 140, 70);
     }
     function create() {
-        user = game.add.sprite(100, 50, 'user');
         backGround = game.add.sprite('background';
-        wall = game.add.sprite('wall');                             
+        wall = game.add.sprite('wall');
+        user = game.add.sprite(100, 50, 'user');
         startButton = game.add.button(game.world.width*0.25, game.world.height*0.25, 'startButton', startGame, this, 1, 0, 2);
         startButton.anchor.set(0.5);
     }
