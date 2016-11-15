@@ -18,15 +18,15 @@
     });
     function preload() {
         game.load.image('background', 'img/background.jpeg', 1200, 900);
-        game.load.image('wall', 'img/brickwalltexture1.jpg', 920, 680);
+        game.load.image('wall', 'img/brickwalltexture1.jpg', 920, 680, game.world.width*0.5, game.world.height*0.5);
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
-        game.stage.backgroundColor = '#eee';
         game.load.image('user', 'img/climbingpedro.png', 200, 120);
         game.load.spritesheet('startButton', 'img/Start-Button.png', 140, 70);
     }
     function create() {
+        game.physics.startSystem(Phaser.Physics.ARCADE);
         backGround = game.add.sprite('background';
         wall = game.add.sprite('wall');
         user = game.add.sprite(100, 50, 'user');
