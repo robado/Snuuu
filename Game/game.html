@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Gamedev Phaser Workshop - lesson 01: Initialize the framework</title>
+    <style>* { padding: 0; margin: 0; }</style>
+    <script src="js/phaser.min.js"></script>
+</head>
+<body>
+<script>
+    var user;
+    var startButton;
+    var playing = false;
+    var backGround;
+    var wall;
+    var game = new Phaser.Game(1200, 900, Phaser.AUTO, null, {
+      preload: preload, create: create, update: update
+    });
+    function preload() {
+        game.load.image('backGround', 'img/background.jpeg');
+        game.load.image('wall', 'img/brickwalltexture1.jpg', game.world.width*0.5, game.world.height*0.5);
+        game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
+        game.scale.pageAlignHorizontally = true;
+        game.scale.pageAlignVertically = true;
+        game.load.image('user', 'img/climbingpedro.png');
+        game.load.spritesheet('startButton', 'img/Start-Button.png');
+    }
+    function create() {
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+        backGround = game.add.sprite('backGround';
+        wall = game.add.sprite('wall');
+        user = game.add.sprite(game.world.width*0.5, game.world.height*0.5, 'user');
+        startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'startButton', startGame, this, 1, 0, 2);
+        startButton.anchor.set(0.5);
+    }
+    function update() {
+        if (playing) {
+          user.y -= 1;
+          game.camera.y -=1
+          
+        }
+    }
+    function startGame() {
+        startButton.destroy();
+        playing = true;
+    }
+</script>
+</body>
+</html>
