@@ -23,13 +23,29 @@
         game.load.image('user', 'img/climbingpedro.png');
         game.stage.backgroundColor = '#eee';
     }
-    function create() {
+    function create() {    
         backGround = game.add.tileSprite(0, 0, 256, 256, 'backGround');
-		wall = game.add.tileSprite(0, 0, 128, 128, 'wall');
+	wall = game.add.tileSprite(0, 0, 128, 128, 'wall');
         user = game.add.sprite(100, 100, 'user');
+	
+	upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+    	downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+    	leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+    	rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+    
     }
     function update() {
         user.y -= 0.5;
+	if (leftkey.isDown) {
+		user.x--; 	
+	} else if (rightKey.isDown) {
+	  user.x++;
+	} else if (upKey.isDown) {
+	  user.y--;	   
+	} else if (downKey.isDown) {
+	  user.y++;
+	}
+	    
         game.camera.y -=1
     }
 </script>
