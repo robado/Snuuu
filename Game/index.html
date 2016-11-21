@@ -31,7 +31,7 @@
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         game.load.image('user', 'img/littleclimbingpedro.png');
-	game.load.spriteSheet('button', 'img/startbutton.png');    
+	game.load.spriteSheet('button', 'img/Start-Button.png');    
         game.stage.backgroundColor = '#eee';
     }
     function create() {    
@@ -74,7 +74,7 @@
 	
     	}
     }	    
-    Function startGame() {
+    function startGame() {
     	startButton.destroy();
         user.body.velocity.set(150, -150);
         playing = true;    
