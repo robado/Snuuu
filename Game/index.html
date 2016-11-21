@@ -16,6 +16,10 @@
     var downKey;
     var leftKey;
     var rightKey;
+    
+    var lives;
+    var playing = false;
+    var startbutton; 	
 	
     var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {
     preload: preload, create: create, update: update
@@ -27,6 +31,7 @@
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         game.load.image('user', 'img/littleclimbingpedro.png');
+	game.load.spriteSheet('button', 'img/startbutton.png');    
         game.stage.backgroundColor = '#eee';
     }
     function create() {    
@@ -42,29 +47,38 @@
     	downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
     	leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     	rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-    
+	    
+        startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'button', startGame, this, 1, 0, 2);
+	startButton.anchor.set(0.5);
     }
     function update() {
         game.camera.y -=1
-    if (upKey.isDown)
-    {
-        user.body.velocity.y = -150;
-    }
-    else if (downKey.isDown)
-    {
-        user.body.velocity.y = 150;
-    }
+	if (playing) {    
+    		if (upKey.isDown)
+    		{
+        		user.body.velocity.y = -150;
+    		}
+    		else if (downKey.isDown)
+    		{
+        		user.body.velocity.y = 150;
+    		}
 
-    if (leftKey.isDown)
-    {
-        user.body.velocity.x = -150;
-    }
-    else if (rightKey.isDown)
-    {
-        user.body.velocity.x = 150;
-    }
+    		if (leftKey.isDown)
+    		{
+        		user.body.velocity.x = -150;
+    		}
+    		else if (rightKey.isDown)
+    		{
+        		user.body.velocity.x = 150;
+    		}
 	
-    }
+    	}
+    }	    
+    Function startGame() {
+    	startButton.destroy();
+        user.body.velocity.set(150, -150);
+        playing = true;    
+    }		
 </script>
 </body>
 </html>
