@@ -15,21 +15,21 @@
       preload: preload, create: create, update: update
     });
     function preload() {
-        game.load.image('backGround', 'game/img/background.jpeg');
-        game.load.image('wall', 'game/img/brickwalltexture1.jpg');
+        game.load.image('backGround', 'img/background.jpeg');
+        game.load.image('wall', 'img/longwall.jpg');
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
-        game.load.image('user', 'game/img/ball.png');
+        game.load.image('user', 'img/climbingpedro.png');
         game.stage.backgroundColor = '#eee';
     }
     function create() {
-        backGround = game.add.image(game.world.width*0.5, game.world.height*0.5, 'backGround';
-        wall = game.add.image('wall');
-        user = game.add.sprite(game.world.width*0.5, game.world.height*0.5, 'user');
+        backGround = game.add.tileSprite(0, 0, 256, 256, 'backGround');
+		wall = game.add.tileSprite(0, 0, 128, 128, 'wall');
+        user = game.add.sprite(100, 100, 'user');
     }
     function update() {
-        user.y -= 1;
+        user.y -= 0.5;
         game.camera.y -=1
     }
 </script>
