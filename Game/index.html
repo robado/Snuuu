@@ -16,7 +16,9 @@
     var downKey;
     var leftKey;
     var rightKey;
-
+    	
+    var lives;
+	
     var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {
       preload: preload, create: create, update: update
     });
@@ -30,9 +32,13 @@
         game.stage.backgroundColor = '#eee';
     }
     function create() {    
-        backGround = game.add.tileSprite(0, 0, 256, 256, 'backGround');
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+	game.physics.enable(user, Phaser.Physics.ARCADE);    
+	backGround = game.add.tileSprite(0, 0, 256, 256, 'backGround');
 	wall = game.add.tileSprite(0, 0, 128, 128, 'wall');
         user = game.add.sprite(100, 100, 'user');
+	user.body.collideWorldBounds = true; 
+	user.body.bounce.set(1);    
 	
 	upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
     	downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
