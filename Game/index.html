@@ -11,12 +11,12 @@
     var user;
     var backGround;
     var wall;
-    	
+	
     var upKey;
     var downKey;
     var leftKey;
-    var rightKey;	
-		
+    var rightKey;
+
     var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {
       preload: preload, create: create, update: update
     });
@@ -42,17 +42,25 @@
     }
     function update() {
         user.y -= 0.5;
-	if (leftkey.isDown) {
-	  user.x--; 	
-	} else if (rightKey.isDown) {
-	  user.x++;
-	} else if (upKey.isDown) {
-	  user.y--;	   
-	} else if (downKey.isDown) {
-	  user.y++;
-	}
-	    
         game.camera.y -=1
+    if (upKey.isDown)
+    {
+        user.y--;
+    }
+    else if (downKey.isDown)
+    {
+        user.y++;
+    }
+
+    if (leftKey.isDown)
+    {
+        user.x--;
+    }
+    else if (rightKey.isDown)
+    {
+        user.x++;
+    }
+	
     }
 </script>
 </body>
