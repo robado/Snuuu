@@ -17,9 +17,8 @@
     var leftKey;
     var rightKey;
     
-    var lives;
     var playing = false;
-    var startbutton; 	
+    var startButton; 	
 	
     var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {
     preload: preload, create: create, update: update
@@ -31,7 +30,7 @@
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         game.load.image('user', 'img/littleclimbingpedro.png');
-	game.load.spriteSheet('button', 'img/Start-Button.png');    
+		game.load.image('button', 'img/Start-Button.png');    
         game.stage.backgroundColor = '#eee';
     }
     function create() {    
@@ -52,7 +51,6 @@
 	startButton.anchor.set(0.5);
     }
     function update() {
-        game.camera.y -=1
 	if (playing) {    
     		if (upKey.isDown)
     		{
