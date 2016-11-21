@@ -11,7 +11,7 @@
     var user;
     var backGround;
     var wall;
-    var game = new Phaser.Game(1200, 900, Phaser.AUTO, null, {
+    var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {
       preload: preload, create: create, update: update
     });
     function preload() {
@@ -21,6 +21,7 @@
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         game.load.image('user', 'game/img/ball.png');
+        game.stage.backgroundColor = '#eee';
     }
     function create() {
         backGround = game.add.image(game.world.width*0.5, game.world.height*0.5, 'backGround';
