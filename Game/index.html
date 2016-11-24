@@ -20,7 +20,7 @@
     var playing = false;
     var startButton; 	
 	
-    var game = new Phaser.Game(480, 320, Phaser.AUTO, null, {
+    var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
     preload: preload, create: create, update: update
     });
     function preload() {
@@ -34,14 +34,22 @@
         game.stage.backgroundColor = '#eee';
     }
     function create() {    
-        game.world.setBounds(0, 0, 1920, 1920);
-	game.physics.startSystem(Phaser.Physics.ARCADE);   
-	backGround = game.add.tileSprite(0, 0, 256, 256, 'backGround');
-	wall = game.add.tileSprite(0, 0, 128, 128, 'wall');
-        user = game.add.sprite(100, 100, 'user');
+     	game.world.setBounds(0, 0, 1920, 1920);
+	game.physics.startSystem(Phaser.Physics.ARCADE);
+   
+	backGround = game.add.tileSprite(0, 0, 1920, 1920, 'backGround');
+
+	wall = game.add.tileSprite(game.world.width*0.5, game.world.height*0.5, 512, 1024, 'wall');
+	game.physics.enable(wall, Phaser.Physics.ARCADE);
+	wall.body.collideWorldBounds = true;
+	wall.body.immovable = true;
+
+     	user = game.add.sprite(game.world.width*0.5, game.world.height*0.5, 'user');
 	game.physics.enable(user, Phaser.Physics.ARCADE);
 	user.body.collideWorldBounds = true; 
 	user.body.bounce.set(1);
+	game.physics.arcade.enable([user, wall]);
+	
 	game.camera.follow(user);    
 	
 	upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -71,6 +79,7 @@
     		{
         		user.body.velocity.x = 150;
     		}
+		game.physics.arcade.collide(wall, user);
 	
     	}
     }	    
