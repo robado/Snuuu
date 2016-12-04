@@ -1,0 +1,163 @@
+html{
+    background: url("../img/dn.jpg")no-repeat center center fixed; 
+    background-position: 0 0, 0,0;
+    background-repeat: no-repeat;  
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    font-family: monospace;
+    font-weight: bold;
+    color: #fff;
+    font-size: 4rem;
+    text-shadow: #000 2px 2px 0;
+    margin-bottom: 2rem;
+}
+p {
+    text-align: center;
+    font-family: monospace;
+    color: #fff;
+    font-size: 1rem;
+    text-shadow: #000 2px 2px 0;
+    margin-bottom: 1rem;
+}
+.wrapper{
+  margin: 0 auto;
+  max-width: 1500px;
+  position: relative;
+}
+.perspective
+{           background-color: #000;
+            background-repeat: no-repeat;
+            background-position: center;
+            position: relative;
+            display: inline;
+            float: left;
+            height: 200px;
+            width: 200px;
+            margin: 20px;
+            -webkit-perspective: 450;
+            text-align: center;
+            margin-top: 1em;
+        }
+        
+        .boxOpened
+        {
+            transform: rotateY(-120deg);
+            transition: 5s linear;
+        }
+/*öööö mahdollinen rajaus sivulla
+#top, #bottom, #left, #right {
+	background: #fff;
+	position: fixed;
+	}
+	#left, #right {
+		top: 0; bottom: 0;
+		width: 30px;
+		}
+		#left { left: 0; }
+		#right { right: 0; }
+		
+	#top, #bottom {
+		left: 0; right: 0;
+		height: 15px;
+		}
+		#top { top: 0; }
+		#bottom { bottom: 0; }*/
+.container{
+  position: absolute;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;  
+  counter-increment: days;
+}
+.box {
+  position: relative;
+  z-index: 3;
+  border-left: 1px solid rgba(255,255,255,0.5);  
+  border-top: 1px solid rgba(255,255,255,0.5);
+  border-right: 1px solid rgba(0,0,0,0.5);
+  border-bottom: 1px solid rgba(0,0,0,0.5);
+  z-index: 3;
+  color: transparent;
+  background: -webkit-gradient(linear, 0 0, 100% 0, from(rgba(0,0,0,0)), to(rgba(0,0,0,0.4))), url("../img/dn.jpg");
+  background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0, rgba(0,0,0,0.4) 100%), url("../img/dn.jpg");
+  background: -moz-linear-gradient(left, rgba(0,0,0,0) 0, rgba(0,0,0,0.4) 100%), url("../img/dn.jpg");
+  background: -ms-linear-gradient(left, rgba(0,0,0,0) 0, rgba(0,0,0,0.4) 100%), url("../img/dn.jpg");  
+  background: -o-linear-gradient(left, rgba(0,0,0,0) 0, rgba(0,0,0,0.4) 100%), url("../img/dn.jpg");
+  background: linear-gradient(left, rgba(0,0,0,0) 0, rgba(0,0,0,0.4) 100%), url("../img/dn.jpg");
+  background-position: 0 0, 0,0;
+  background-repeat: no-repeat;
+    width: 200px;
+    height: 200px;
+    box-sizing: border-box;
+    transition: 5s transform linear;
+    transform-origin: left;
+    cursor: pointer;
+}
+
+.doors li:nth-child(1)  .box { background-position: 0 0, -423.5px -369.5px}
+.doors li:nth-child(2)  .box { background-position: 0 0, -568.5px -369.5px}
+.doors li:nth-child(3)  .box { background-position: 0 0, -713.5px -369.5px}
+.doors li:nth-child(4)  .box { background-position: 0 0, -858.5px -369.5px}
+.doors li:nth-child(5)  .box { background-position: 0 0, -1003.5px -369.5px}
+.doors li:nth-child(6)  .box { background-position: 0 0, -1148.5px -369.5px}
+.doors li:nth-child(7)  .box { background-position: 0 0, -423.5px -514.5px}
+.doors li:nth-child(8)  .box { background-position: 0 0, -568.5px -514.5px}
+.doors li:nth-child(9)  .box { background-position: 0 0, -713.5px -514.5px}
+.doors li:nth-child(10) .box { background-position: 0 0, -858.5px -514.5px}
+.doors li:nth-child(11) .box { background-position: 0 0, -1003.5px -514.5px}
+.doors li:nth-child(12) .box { background-position: 0 0, -1148.5px -514.5px}
+.doors li:nth-child(13) .box { background-position: 0 0, -423.5px -659.5px}
+.doors li:nth-child(14) .box { background-position: 0 0, -568.5px -659.5px}
+.doors li:nth-child(15) .box { background-position: 0 0, -713.5px -659.5px}
+.doors li:nth-child(16) .box { background-position: 0 0, -858.5px -659.5px}
+.doors li:nth-child(17) .box { background-position: 0 0, -1003.5px -659.5px}
+.doors li:nth-child(18) .box { background-position: 0 0, -1148.5px -659.5px}
+.doors li:nth-child(19) .box { background-position: 0 0, -423.5px -804.5px}
+.doors li:nth-child(20) .box { background-position: 0 0, -568.5px -804.5px}
+.doors li:nth-child(21) .box { background-position: 0 0, -713.5px -804.5px}
+.doors li:nth-child(22) .box { background-position: 0 0, -858.5px -804.5px}
+.doors li:nth-child(23) .box { background-position: 0 0, -1003.5px -804.5px}
+.doors li:nth-child(24) .box { background-position: 0 0, -1148.5px -804.5px}
+
+
+
+
+.doors li .box:before{
+  position: relative;
+  left: 15px;
+  top: 15px;
+  content: counter(days);  
+  color: #fff;
+  font-size: 2.6rem;
+  line-height: 1;
+  font-family:  sans-serif;
+  font-weight: bold;  
+  padding-right: 20px;
+  
+}
+
+
+.doors {
+   margin: 4rem 0;
+   counter-reset: days;
+}
+
+.doors > li{
+   -webkit-perspective: 900;
+  -moz-perspective: 900;
+  -ms-perspective: 900;
+  -o-perspective: 900;	   
+  perspective: 900;    
+  counter-increment: days;
+}
+
+.doors li:nth-child(6n){
+  margin-right: 0;
+}
+
