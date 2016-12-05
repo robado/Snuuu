@@ -18,24 +18,42 @@
     var rightKey;
     
     var playing = false;
-    var startButton; 	
+    var startButton;
+	var text;
+	var livesText;
+	var lives = 5;
+	var deathText;
+	var winText;
+
+	var numberOfFences = 30;
+	var fences;
+	var fence;
 	
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, null, {
+	var boosts;
+	var boost;
+	var boostsCollected = 0;
+	var music;
+	
+	
+    var game = new Phaser.Game(window.innerWidth, window.innerHeight, Phaser.AUTO, null, {
     preload: preload, create: create, update: update
     });
     function preload() {
-        game.load.image('backGround', 'img/background.jpeg');
+        game.load.image('backGround', 'img/brickwalltexture1.jpg');
         game.load.image('wall', 'img/longwall.jpg');
         game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
         game.scale.pageAlignHorizontally = true;
         game.scale.pageAlignVertically = true;
         game.load.image('user', 'img/littleclimbingpedro.png');
-	game.load.image('button', 'img/Start-Button.png');    
+		game.load.image('button', 'img/Start-Button.png');
+		game.load.image('fence', 'img/littleborderwire.png');
+		game.load.image('boost', 'img/freedom.png');
+		game.load.audio('win', 'audio/mariachi.ogg');
         game.stage.backgroundColor = '#eee';
     }
     function create() {    
      	game.world.setBounds(0, 0, 1920, 1920);
-	game.physics.startSystem(Phaser.Physics.ARCADE);
+		game.physics.startSystem(Phaser.Physics.ARCADE);
    
 	backGround = game.add.tileSprite(0, 0, 1920, 1920, 'backGround');
 
@@ -44,42 +62,100 @@
 	wall.body.collideWorldBounds = true;
 	wall.body.immovable = true;
 
-     	user = game.add.sprite(game.world.width*0.5, game.world.height*0.5, 'user');
+    user = game.add.sprite(game.world.width*0.5 - 150, game.world.height*0.5, 'user');
 	game.physics.enable(user, Phaser.Physics.ARCADE);
 	user.body.collideWorldBounds = true; 
 	user.body.bounce.set(1);
+	user.scale.setTo(2);
+	
 	game.physics.arcade.enable([user, wall]);
 	
-	game.camera.follow(user);    
 	
-	upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+	game.camera.follow(user, Phaser.Camera.FOLLOW_LOCKON, 0.1, 0.1);    
+	
+		upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
     	downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
     	leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
     	rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
 	    
         startButton = game.add.button(game.world.width*0.5, game.world.height*0.5, 'button', startGame, this, 1, 0, 2);
-	startButton.anchor.set(0.5);
+		startButton.anchor.set(0.5);
+		
+		text = game.add.text(game.world.centerX, game.world.centerY, "This is Pedro \nHelp pedro to destroy wall by collecting FREEDOM\n-Click anywhere to remove text-", { font: "35px Arial", fill: "#0095DD", align: "center"});
+		text.fixedToCamera = true;
+		text.cameraOffset.setTo(300, 500);
+		
+		textStyle = { font: "30px Arial", fill: "#0095DD" };
+		livesText = game.add.text(game.width - 120, game.height - 50, "Lives: "+lives, textStyle);
+		livesText.fixedToCamera = true;
+		
+		fences = game.add.group();
+		fences.enableBody = true;
+		fences.physicsBodyType = Phaser.Physics.ARCADE;
+		
+		
+		
+		
+		
+		for (var i = 0; i < 15; i++) {
+			
+			fence = fences.create(game.world.randomX, game.world.randomY, 'fence');
+			fence.scale.setTo(0.75);
+			fence.body.immovable = true;
+			fence.body.collideWorldBounds = true;
+
+			
+		}
+	deathText = game.add.text(game.width*0.5, game.height*0.5, "Click anywhere to revive pedro\n-be carefull not to die again-", { font: "45px Arial", fill: "#0095DD", align: "center"})
+	deathText.visible = false;
+	deathText.fixedToCamera = true;
+	
+	winText = game.add.text(game.width*0.5 - 200, game.height*0.5, "YOU MADE\n AMERICA GREAT AGAIN!-", { font: "100px Arial", fill: "#b20000", align: "center"})
+	winText.visible = false;
+	winText.fixedToCamera = true;
+	music = game.add.audio('win');
+	
+	nanoBoost();
     }
     function update() {
+	if (lives <= 0) {
+		
+		location.reload();
+		
+	}
+	if (boostsCollected >= 8){
+		killWall();
+		
+	}
+	if (boostsCollected == 10) {
+		winText.visible = true;
+
+		
+	}
+	user.body.velocity.x = 0;
+	user.body.velocity.y = 0;
 	if (playing) {    
     		if (upKey.isDown)
     		{
-        		user.body.velocity.y = -150;
+        		user.body.velocity.y = -300;
     		}
     		else if (downKey.isDown)
     		{
-        		user.body.velocity.y = 150;
+        		user.body.velocity.y = 300;
     		}
 
     		if (leftKey.isDown)
     		{
-        		user.body.velocity.x = -150;
+        		user.body.velocity.x = -300;
     		}
     		else if (rightKey.isDown)
     		{
-        		user.body.velocity.x = 150;
+        		user.body.velocity.x = 300;
     		}
 		game.physics.arcade.collide(wall, user);
+		game.input.onDown.addOnce(removeText, this);
+		game.physics.arcade.collide(fences, user, hitFence, null, this);
+		game.physics.arcade.overlap(user, boosts, collect, null, this);
 	
     	}
     }	    
@@ -87,7 +163,49 @@
     	startButton.destroy();
         user.body.velocity.set(150, -150);
         playing = true;    
-    }		
+    }
+	function removeText() {
+		if (playing) {
+			text.destroy();
+		}
+		
+	}
+	function nanoBoost() {
+		boosts = game.add.group();
+		boosts.enableBody = true;
+		boosts.physicsBodyType = Phaser.Physics.ARCADE;
+		
+		for (var i = 0; i < 10; i++) {
+			boost = boosts.create(game.world.randomX, game.world.randomY, 'boost');
+			boost.scale.setTo(0.33);
+			
+			
+		}
+		
+		
+	}
+	function collect(user, boost) {
+		boost.kill();
+		boostsCollected++;
+		
+		
+		
+	}
+	function killWall() {
+		wall.kill();
+		
+	}
+	function hitFence(user, fence) {
+		lives = lives - 1;
+		user.kill();
+		deathText.visible = true;
+		game.input.onTap.addOnce(restart,this);
+		
+	}
+	function restart(){
+		user.revive();
+		deathText.visible = false;
+	}
 </script>
 </body>
 </html>
