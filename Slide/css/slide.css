@@ -1,0 +1,156 @@
+html{
+    background: url("../img/dn1.jpg")no-repeat center center fixed; 
+    background-position: 0 0, 0,0;
+    background-repeat: no-repeat;  
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+h1 {
+    text-align: center;
+    font-family: monospace;
+    font-weight: bold;
+    color: #fff;
+    font-size: 8rem;
+    text-shadow: #000 4px 2px 0;
+    margin-bottom: 2rem;
+    
+}
+p {
+    text-align: center;
+    font-family: monospace;
+    color: #fff;
+    font-size: 2rem;
+    text-shadow: #000 2px 2px 0;
+    margin-bottom: 1rem;
+}
+.wrapper{
+  margin: 0 auto;
+  max-width: 800px;
+  position: relative;
+    
+  align-content: center;
+}
+
+.cover {
+  position: relative;
+  width: 600px;
+  height: 600px;
+  margin: 20px auto;
+  background-color: #eee;
+  z-index: 1;
+    content: counter(days); 
+  
+  -webkit-box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  -mox-box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.cover p {
+  text-align: center;
+  margin: 0;
+}
+
+.left_gate {
+  position: absolute;
+  background: #41B5F0;
+  bottom: 0; right: 50%; left: 0; top: 0;
+  
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition:all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  
+}
+.cover:hover .left_gate {
+  right: 100%; left: -50%;
+}
+
+.right_gate {
+  position: absolute;
+  background: #0C5CA3;
+  bottom: 0;
+  left: 50%;
+  right: 0;
+  top: 0;
+  
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -ms-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.cover:hover .right_gate {
+  left: 100%; right: -50%;
+}
+
+.slide_in {
+  overflow: hidden;
+}
+.slide_in .left_gate {
+  background: #000;
+}
+.slide_in .right_gate {
+  background: #fff;
+}
+
+.polaroid {
+  width: 100%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+  
+}
+
+.info {
+  text-align: center;
+  padding: 10px 20px;
+  
+}
+#top, #left, #right {
+	background: #fff;
+	position: fixed;
+	}
+	#left, #right {
+		top: 0; bottom: 0;
+		width: 30px;
+		}
+		#left { left: 0; }
+		#right { right: 0; }
+		
+	#top, {
+		left: 0; right: 0;
+		height: 15px;
+		}
+		#top { top: 0; }
+		 { bottom: 0; }
+
+.container{
+  position: absolute;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 20px;  
+  counter-increment: days;
+}
+.box{
+    content: counter(days); 
+    margin: 2em;
+    float: left;
+    
+}
+
+.doors {
+   margin: 4rem 0;
+   counter-reset: days;
+}
+
+.doors li:nth-child(6n){
+  margin-right: 0;
+}
+
+.doors > li{  
+  counter-increment: days;
+}
+
